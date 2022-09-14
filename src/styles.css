@@ -1,0 +1,79 @@
+.container {
+    border: 1px solid black;
+    border-radius: 5px;
+    font-family: 'Ubuntu', sans-serif;;
+    margin: 20px auto;
+    padding: 30px 30px 30px;
+}
+
+.header {
+    padding-bottom: 10px;
+}
+
+.search-button {
+    border: 0px solid white;
+    background-color: buttonface;
+    padding: 6.5px 8px;
+}
+
+input {
+    border: 1.5px solid #efefef;
+    border-radius: 5px;
+    display: inline;
+    padding: 5px;
+}
+
+button {
+    border: 1.5px solid #efefef;
+    border-radius: 5px;
+    display: inline;
+    padding: 5px 8px;
+}
+
+.current-location-pin {
+    color: #616873;
+}
+
+h1 {
+    margin: 10px 0 0;
+    padding: 10px 0;
+}
+
+.weather-info-emoji-today{
+    padding-top: 20px;
+    text-align: left;
+}
+
+.emoji-today{
+    color: #fff5a5;
+    font-size: 150px;
+}
+
+.weather-info-adj-today {
+    font-size: 40px;
+    margin: 42px 0 10px;
+}
+
+.weather-info-temp-today {
+    font-size: 20px;
+    font-weight: lighter;
+    margin-bottom: 10px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.weather-info-details-today {
+    font-size: 13.5px;
+}
+
+.card-title {
+    font-size: 1.2rem;
+}
+
+.emoji-future {
+    color: #e7eaf6;
+    font-size: 30px;
+    padding: 10px;
+}

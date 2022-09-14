@@ -1,0 +1,6 @@
+City name and weather description on 1 level
+Dark/light theme toggle (day and night temp)
+Colorful background
+Country, date, time zone lines closer to each other
+Today's emoji slightly to the right (relative positioning) OR
+Add a quote/nice affirmation in the center on the right of the emoji
