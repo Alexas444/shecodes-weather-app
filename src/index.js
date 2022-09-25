@@ -38,6 +38,7 @@ function showWeatherToday(response) {
   document.querySelector("#displayed-city").innerHTML = response.data.name;
   document.querySelector("#temp-number").innerHTML = Math.round(response.data.main.temp);
   document.querySelector("#weather-info-adj-today").innerHTML = response.data.weather[0].main;
+  document.querySelector("#feels-like-today").innerHTML = Math.round(response.data.main.feels_like) + `℃`;
   document.querySelector("#humidity-today").innerHTML = response.data.main.humidity;
   document.querySelector("#wind-today-km").innerHTML = Math.round(response.data.wind.speed);
   document.querySelector("#displayed-country").innerHTML = regionNames.of(response.data.sys.country);
