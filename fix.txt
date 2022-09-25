@@ -6,5 +6,4 @@ Today's emoji slightly to the right (relative positioning) OR
 Add a quote/nice affirmation in the center on the right of the emoji
 Search engine buttons
 Fix Celsius bug (changes to default after changing back from Fahrenheit)
-Add UTC/GMT
 Fix layout (location and weather description on the same level)

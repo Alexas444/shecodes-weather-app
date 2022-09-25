@@ -1,12 +1,8 @@
 // Current Date
 
-function formatDate(date) {
+function formatWeekdayTime(date) {
   let days = [`Sunday`, `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday`];
   let currentWeekDay = days[date.getDay()];
-  let currentDay = date.getDate();
-  let months = [`January`, `February`, `March`, `April`, `May`, `June`, `July`, `August`, `September`, `October`, `November`, `December`];
-  let currentMonth = months[date.getMonth()];
-  let currentYear = date.getFullYear();
   let currentHour = date.getHours();
   if (currentHour < 10) {
     currentHour = `0${currentHour}`;
@@ -15,17 +11,27 @@ function formatDate(date) {
   if (currentMinute < 10) {
     currentMinute = `0${currentMinute}`;
   }
-  return `${currentWeekDay}, ${currentDay} ${currentMonth} ${currentYear} | ${currentHour}:${currentMinute}`;
+  return `${currentWeekDay} | ${currentHour}:${currentMinute}`;
+}
+
+function formatDate(date) {
+  let currentDay = date.getDate();
+  let months = [`January`, `February`, `March`, `April`, `May`, `June`, `July`, `August`, `September`, `October`, `November`, `December`];
+  let currentMonth = months[date.getMonth()];
+  let currentYear = date.getFullYear();
+  return `${currentDay} ${currentMonth} ${currentYear}`;
 }
 
 let now = new Date();
+let currentWeekdayTime = document.querySelector("#current-date-weekday-time")
 let currentDate = document.querySelector("#current-date");
 currentDate.innerHTML = formatDate(now);
+currentWeekdayTime.innerHTML = formatWeekdayTime(now);
 
 // Search Engine
 
 function showWeatherToday(response) {
-  console.log(response.data.sys.country);
+  console.log(response.data);
   let regionNames = new Intl.DisplayNames(
     ['en'], {type: 'region'}
   );
