@@ -1,4 +1,5 @@
-// Temperature + Date
+//Date
+
 function formatWeekdayTime(timestamp){
   let date = new Date(timestamp);
   let hour = date.getHours();
@@ -23,6 +24,8 @@ function formatDate(timestamp) {
   return `${month} ${day}, ${year}`;
 }
 
+// Temperature
+
 function showTemp(response){
   console.log(response.data);
   document.querySelector("#temp-number-today").innerHTML = Math.round(response.data.temperature.current);
@@ -35,6 +38,8 @@ function showTemp(response){
   document.querySelector("#current-date-weekday-time").innerHTML = formatWeekdayTime(response.data.time * 1000);
   document.querySelector("#current-date").innerHTML = formatDate(response.data.time * 1000);
 }
+
+// API Integration
 
 let apiKey = "ab34b6cfb76f0e4bt38a1d0d31751o81";
 let apiEndpoint = "https://api.shecodes.io/weather/v1/current?";

@@ -7,5 +7,5 @@ Add a quote/nice affirmation in the center on the right of the emoji
 Search engine buttons
 Fix Celsius bug (changes to default after changing back from Fahrenheit)
 Fix layout (location and weather description on the same level)
-Format date with timestamp
 Id, class, function, variables name structure
+Wind speed conversion
