@@ -37,6 +37,8 @@ function showTemp(response){
   document.querySelector("#wind-km").innerHTML = Math.round(response.data.wind.speed);
   document.querySelector("#current-date-weekday-time").innerHTML = formatWeekdayTime(response.data.time * 1000);
   document.querySelector("#current-date").innerHTML = formatDate(response.data.time * 1000);
+  document.querySelector("#weather-info-emoji-today").setAttribute("src", `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`);
+  document.querySelector("#weather-info-emoji-today").setAttribute("alt", response.data.condition.description);
 }
 
 // API Integration
