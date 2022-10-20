@@ -1,6 +1,6 @@
 City name and weather description on 1 level
 Dark/light theme toggle (day and night temp)
-Colorful background
+Colorful background (video?)
 Country, date, time zone lines closer to each other
 Today's emoji slightly to the right (relative positioning) OR
 Add a quote/nice affirmation in the center on the right of the emoji
@@ -8,3 +8,4 @@ Search engine buttons
 Fix Celsius bug (changes to default after changing back from Fahrenheit)
 Fix layout (location and weather description on the same level)
 Format date with timestamp
+Id, class, function, variables name structure

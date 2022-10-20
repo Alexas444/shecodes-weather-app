@@ -49,9 +49,13 @@ h1 {
     font-size: 150px;
 }
 
-.weather-info-adj-today {
+.weather-info-descr-today {
     font-size: 40px;
     margin: 42px 0 10px;
+}
+
+.weather-info-descr-today::first-letter {
+    text-transform: capitalize;
 }
 
 .weather-info-temp-today {
@@ -59,12 +63,15 @@ h1 {
     font-weight: lighter;
     margin-bottom: 10px;
 }
+.temp-number-today{
+    font-weight: 900;
+}
 
 a {
     text-decoration: none;
 }
 
-.weather-info-details-today {
+.weather-info-details {
     font-size: 13.5px;
 }
 
