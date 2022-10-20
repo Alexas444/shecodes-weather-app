@@ -25,24 +25,15 @@ function formatDate(timestamp) {
 
 function showTemp(response){
   console.log(response.data);
-  let tempToday = document.querySelector("#temp-number-today");
-  tempToday.innerHTML = Math.round(response.data.temperature.current);
-  let displayedCity = document.querySelector("#displayed-city");
-  displayedCity.innerHTML = response.data.city;
-  let displayedCountry = document.querySelector("#displayed-country");
-  displayedCountry.innerHTML = response.data.country;
-  let descrToday = document.querySelector("#weather-info-descr-today");
-  descrToday.innerHTML = response.data.condition.description;
-  let feelsLikeProp = document.querySelector("#feels-like");
-  feelsLikeProp.innerHTML = Math.round(response.data.temperature.feels_like);
-  let humidityProp = document.querySelector("#humidity");
-  humidityProp.innerHTML = response.data.temperature.humidity;
-  let windSpeedKmProp = document.querySelector("#wind-km");
-  windSpeedKmProp.innerHTML = Math.round(response.data.wind.speed);
-  let currentWeekDayTime = document.querySelector("#current-date-weekday-time");
-  currentWeekDayTime.innerHTML = formatWeekdayTime(response.data.time * 1000);
-  let currentDate = document.querySelector("#current-date");
-  currentDate.innerHTML = formatDate(response.data.time * 1000);
+  document.querySelector("#temp-number-today").innerHTML = Math.round(response.data.temperature.current);
+  document.querySelector("#displayed-city").innerHTML = response.data.city;
+  document.querySelector("#displayed-country").innerHTML = response.data.country;
+  document.querySelector("#weather-info-descr-today").innerHTML = response.data.condition.description;
+  document.querySelector("#feels-like").innerHTML = Math.round(response.data.temperature.feels_like);
+  document.querySelector("#humidity").innerHTML = response.data.temperature.humidity;
+  document.querySelector("#wind-km").innerHTML = Math.round(response.data.wind.speed);
+  document.querySelector("#current-date-weekday-time").innerHTML = formatWeekdayTime(response.data.time * 1000);
+  document.querySelector("#current-date").innerHTML = formatDate(response.data.time * 1000);
 }
 
 let apiKey = "ab34b6cfb76f0e4bt38a1d0d31751o81";
