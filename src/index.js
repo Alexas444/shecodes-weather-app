@@ -31,7 +31,7 @@ currentWeekdayTime.innerHTML = formatWeekdayTime(now);
 // Search Engine
 
 function showWeatherToday(response) {
-  console.log(response.data);
+  console.log(response);
   let regionNames = new Intl.DisplayNames(
     ['en'], {type: 'region'}
   );
@@ -59,10 +59,11 @@ function searchCity(event) {
 }
 
 function searchLocation(position) {
-  let apiKey = "c95d60a1e3adbeb286133f1ebebc2579";
+  let apiKey = "ab34b6cfb76f0e4bt38a1d0d31751o81";
   let unit = "metric";
-  let apiEndpoint = "https://api.openweathermap.org/data/2.5/weather?";
-  let apiUrl = `${apiEndpoint}lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=${unit}`;
+  let apiEndpoint = "https://api.shecodes.io/weather/v1/current?";
+  let apiUrl = `${apiEndpoint}lon=${position.coords.longitude}&lat=${position.coords.latitude}&key=${apiKey}&units=${unit}`;
+  console.log(apiUrl);
   axios.get(apiUrl).then(showWeatherToday);
 }
 
