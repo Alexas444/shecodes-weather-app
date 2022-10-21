@@ -12,7 +12,7 @@ function formatWeekdayTime(timestamp){
   }
   let weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   let weekday = weekdays[date.getDay()];
-  return `${weekday} ${hour}:${minute}`;
+  return `Last updated at: ${weekday} ${hour}:${minute} (local time)`;
 }
 
 function formatDate(timestamp) {
@@ -27,7 +27,6 @@ function formatDate(timestamp) {
 // Temperature
 
 function showTemp(response){
-  console.log(response.data);
   document.querySelector("#temp-number-today").innerHTML = Math.round(response.data.temperature.current);
   document.querySelector("#displayed-city").innerHTML = response.data.city;
   document.querySelector("#displayed-country").innerHTML = response.data.country;
@@ -41,12 +40,25 @@ function showTemp(response){
   document.querySelector("#weather-info-emoji-today").setAttribute("alt", response.data.condition.description);
 }
 
-// API Integration
+// Search Engine
 
-let apiKey = "ab34b6cfb76f0e4bt38a1d0d31751o81";
-let apiEndpoint = "https://api.shecodes.io/weather/v1/current?";
-let unit = "metric";
-let apiUrl = `${apiEndpoint}query=Toronto&key=${apiKey}&units=${unit}`;
-console.log(apiUrl);
+function searchCity(city) {
+  let apiKey = "ab34b6cfb76f0e4bt38a1d0d31751o81";
+  let apiEndpoint = "https://api.shecodes.io/weather/v1/current?";
+  let unit = "metric";
+  let apiUrl = `${apiEndpoint}query=${city}&key=${apiKey}&units=${unit}`;
+  
+  axios.get(apiUrl).then(showTemp);
+}
 
-axios.get(apiUrl).then(showTemp);
+
+function handleSubmit(event){
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#search-field");
+  searchCity(cityInputElement.value);
+}
+
+let searchForm = document.querySelector("#search-form");
+searchForm.addEventListener("submit", handleSubmit);
+
+searchCity("Toronto");
