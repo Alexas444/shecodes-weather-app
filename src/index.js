@@ -1,6 +1,6 @@
 //Date
 
-function formatWeekdayTime(timestamp){
+function formatWeekdayTime(timestamp) {
   let date = new Date(timestamp);
   let hour = date.getHours();
   if (hour < 10) {
@@ -26,14 +26,18 @@ function formatDate(timestamp) {
 
 // Temperature
 
-function showTemp(response){
+function showTemp(response) {
+  celsiusTemp = Math.round(response.data.temperature.current);
+  feelsLikeTemp = Math.round(response.data.temperature.feels_like);
+  windSpeed = Math.round(response.data.wind.speed);
+
   document.querySelector("#temp-number-today").innerHTML = Math.round(response.data.temperature.current);
   document.querySelector("#displayed-city").innerHTML = response.data.city;
   document.querySelector("#displayed-country").innerHTML = response.data.country;
   document.querySelector("#weather-info-descr-today").innerHTML = response.data.condition.description;
-  document.querySelector("#feels-like").innerHTML = Math.round(response.data.temperature.feels_like);
+  document.querySelector("#feels-like-temp").innerHTML = `${Math.round(response.data.temperature.feels_like)} ℃`;
   document.querySelector("#humidity").innerHTML = response.data.temperature.humidity;
-  document.querySelector("#wind-km").innerHTML = Math.round(response.data.wind.speed);
+  document.querySelector("#wind").innerHTML = `${Math.round(response.data.wind.speed)} km/h`;
   document.querySelector("#current-date-weekday-time").innerHTML = formatWeekdayTime(response.data.time * 1000);
   document.querySelector("#current-date").innerHTML = formatDate(response.data.time * 1000);
   document.querySelector("#weather-info-emoji-today").setAttribute("src", `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`);
@@ -51,12 +55,48 @@ function searchCity(city) {
   axios.get(apiUrl).then(showTemp);
 }
 
-
-function handleSubmit(event){
+function handleSubmit(event) {
   event.preventDefault();
   let cityInputElement = document.querySelector("#search-field");
   searchCity(cityInputElement.value);
 }
+
+// Unit Conversion
+
+function showFahrenheitTemp(event) {
+  event.preventDefault();
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+  let tempTodayElement = document.querySelector("#temp-number-today");
+  tempTodayElement.innerHTML = Math.round((celsiusTemp * 9/5) + 32);
+  let feelsLikeTempElement = document.querySelector("#feels-like-temp");
+  feelsLikeTempElement.innerHTML = `${Math.round((feelsLikeTemp * 9/5) + 32)} ℉`;
+  let windSpeedElement = document.querySelector("#wind");
+  windSpeedElement.innerHTML = `${Math.round(windSpeed / 1.609)} mph`;
+}
+
+function showCelsiusTemp(event) {
+  event.preventDefault();
+  fahrenheitLink.classList.remove("active");
+  celsiusLink.classList.add("active");
+  let tempTodayElement = document.querySelector("#temp-number-today");
+  tempTodayElement.innerHTML = celsiusTemp;
+  let feelsLikeTempElement = document.querySelector("#feels-like-temp");
+  feelsLikeTempElement.innerHTML = `${feelsLikeTemp} ℃`;
+  let windSpeedElement = document.querySelector("#wind");
+  windSpeedElement.innerHTML = `${windSpeed} km/h`;
+}
+
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", showFahrenheitTemp);
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", showCelsiusTemp);
+
+let celsiusTemp = null;
+let feelsLikeTemp = null;
+let windSpeed = null;
+
 
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", handleSubmit);
