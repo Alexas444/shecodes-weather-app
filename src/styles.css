@@ -39,14 +39,9 @@ h1 {
     padding: 10px 0;
 }
 
-.weather-info-emoji-today{
-    padding-top: 20px;
-    text-align: left;
-}
-
-.emoji-today{
-    color: #fff5a5;
-    font-size: 150px;
+img {
+    width:150px;
+    height: auto;
 }
 
 .weather-info-descr-today {
