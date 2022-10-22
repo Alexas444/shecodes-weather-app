@@ -61,6 +61,9 @@ function handleSubmit(event) {
   searchCity(cityInputElement.value);
 }
 
+let searchForm = document.querySelector("#search-form");
+searchForm.addEventListener("submit", handleSubmit);
+
 // Unit Conversion
 
 function showFahrenheitTemp(event) {
@@ -97,7 +100,6 @@ let celsiusTemp = null;
 let feelsLikeTemp = null;
 let windSpeed = null;
 
-
 //Forecast
 
 function showForecast() {
@@ -122,9 +124,6 @@ function showForecast() {
   forecastHTML = forecastHTML + `</div>`
   forecastElement.innerHTML = forecastHTML;
 }
-
-let searchForm = document.querySelector("#search-form");
-searchForm.addEventListener("submit", handleSubmit);
 
 searchCity("Toronto");
 showForecast();
