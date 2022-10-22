@@ -24,9 +24,35 @@ function formatDate(timestamp) {
   return `${month} ${day}, ${year}`;
 }
 
+//Forecast
+
+function showForecast(response) {
+let forecastElement = document.querySelector("#forecast");
+  let days = ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"];
+  let forecastHTML = `<div class="row">`;
+  days.forEach(function(day) {
+    forecastHTML = forecastHTML +
+      `<div class="col-2">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">${day}</h5>
+            <h6 class="card-undertitle">25 July 2022</h6>
+            <span class="weather-info-temp-future"><img class="forecast-icon" src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/scattered-clouds-day.png" alt=""> <br> 24℃ | 76℉</span>
+            <p class="card-text">
+              <span class="weather-info-adj-future">Mostly sunny</span>
+          </div>
+        </div>
+      </div>
+      `
+  });
+  forecastHTML = forecastHTML + `</div>`
+  forecastElement.innerHTML = forecastHTML;
+}
+
 // Temperature
 
 function showTemp(response) {
+  
   celsiusTemp = Math.round(response.data.temperature.current);
   feelsLikeTemp = Math.round(response.data.temperature.feels_like);
   windSpeed = Math.round(response.data.wind.speed);
@@ -48,11 +74,14 @@ function showTemp(response) {
 
 function searchCity(city) {
   let apiKey = "ab34b6cfb76f0e4bt38a1d0d31751o81";
-  let apiEndpoint = "https://api.shecodes.io/weather/v1/current?";
   let unit = "metric";
-  let apiUrl = `${apiEndpoint}query=${city}&key=${apiKey}&units=${unit}`;
+  let apiEndpointCurrent = "https://api.shecodes.io/weather/v1/current?";
+  let apiUrlCurrent = `${apiEndpointCurrent}query=${city}&key=${apiKey}&units=${unit}`;
+  let apiEndpointForecast = "https://api.shecodes.io/weather/v1/forecast?";
+  let apiUrlForecast = `${apiEndpointForecast}query=${city}&key=${apiKey}&units=${unit}`;
   
-  axios.get(apiUrl).then(showTemp);
+  axios.get(apiUrlCurrent).then(showTemp);
+  axios.get(apiUrlForecast).then(showForecast);
 }
 
 function handleSubmit(event) {
@@ -100,30 +129,6 @@ let celsiusTemp = null;
 let feelsLikeTemp = null;
 let windSpeed = null;
 
-//Forecast
-
-function showForecast() {
-  let forecastElement = document.querySelector("#forecast");
-  let days = ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"];
-  let forecastHTML = `<div class="row">`;
-  days.forEach(function(day) {
-    forecastHTML = forecastHTML +
-      `<div class="col-2">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">${day}</h5>
-            <h6 class="card-undertitle">25 July 2022</h6>
-            <span class="weather-info-temp-future"><img class="forecast-icon" src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/scattered-clouds-day.png" alt=""> <br> 24℃ | 76℉</span>
-            <p class="card-text">
-              <span class="weather-info-adj-future">Mostly sunny</span>
-          </div>
-        </div>
-      </div>
-      `
-  });
-  forecastHTML = forecastHTML + `</div>`
-  forecastElement.innerHTML = forecastHTML;
-}
+// -----
 
 searchCity("Toronto");
-showForecast();
