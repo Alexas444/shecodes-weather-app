@@ -6,3 +6,4 @@ Add a quote/nice affirmation in the center instead of the emoji
 Fix layout (location and weather description on the same level)
 Id, class, function, variables name structure
 When typing new city while fahrenheit is active, it shows celsius but celsius link is active (as by default)
+Add current location feature
