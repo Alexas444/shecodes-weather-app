@@ -98,7 +98,33 @@ let feelsLikeTemp = null;
 let windSpeed = null;
 
 
+//Forecast
+
+function showForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let days = ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"];
+  let forecastHTML = `<div class="row">`;
+  days.forEach(function(day) {
+    forecastHTML = forecastHTML +
+      `<div class="col-2">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">${day}</h5>
+            <h6 class="card-undertitle">25 July 2022</h6>
+            <span class="weather-info-temp-future"><img class="forecast-icon" src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/scattered-clouds-day.png" alt=""> <br> 24℃ | 76℉</span>
+            <p class="card-text">
+              <span class="weather-info-adj-future">Mostly sunny</span>
+          </div>
+        </div>
+      </div>
+      `
+  });
+  forecastHTML = forecastHTML + `</div>`
+  forecastElement.innerHTML = forecastHTML;
+}
+
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", handleSubmit);
 
 searchCity("Toronto");
+showForecast();
