@@ -52,7 +52,6 @@ let forecastElement = document.querySelector("#forecast");
 // Temperature
 
 function showTemp(response) {
-  
   celsiusTemp = Math.round(response.data.temperature.current);
   feelsLikeTemp = Math.round(response.data.temperature.feels_like);
   windSpeed = Math.round(response.data.wind.speed);
