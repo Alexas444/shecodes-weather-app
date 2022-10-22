@@ -84,10 +84,10 @@ a {
     font-size: 1.2rem;
 }
 
-.emoji-future {
+.forecast-icon {
     color: #e7eaf6;
-    font-size: 30px;
-    padding: 10px;
+    width: 70px;
+    height: auto;
 }
 
 small {
