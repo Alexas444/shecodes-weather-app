@@ -12,7 +12,7 @@ function formatCurrentWeekdayTime(timestamp) {
   }
   let weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   let weekday = weekdays[date.getDay()];
-  return `Last updated at: ${weekday} ${hour}:${minute} (local time)`;
+  return `${weekday} ${hour}:${minute} (local time)`;
 }
 
 function formatCurrentDate(timestamp) {
@@ -94,7 +94,7 @@ function showTemp(response) {
   document.querySelector("#feels-like-temp").innerHTML = `${Math.round(response.data.temperature.feels_like)} ℃`;
   document.querySelector("#humidity").innerHTML = response.data.temperature.humidity;
   document.querySelector("#wind").innerHTML = `${Math.round(response.data.wind.speed)} km/h`;
-  document.querySelector("#current-date-weekday-time").innerHTML = formatCurrentWeekdayTime(response.data.time * 1000);
+  document.querySelector("#current-weekday-time").innerHTML = formatCurrentWeekdayTime(response.data.time * 1000);
   document.querySelector("#current-date").innerHTML = formatCurrentDate(response.data.time * 1000);
   document.querySelector("#weather-info-emoji-today").setAttribute("src", `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`);
   document.querySelector("#weather-info-emoji-today").setAttribute("alt", response.data.condition.description);

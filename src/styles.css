@@ -13,7 +13,7 @@
 .search-button {
     border: 0px solid white;
     background-color: buttonface;
-    padding: 6.5px 8px;
+    padding: 5px 8px;
 }
 
 input {
@@ -23,11 +23,20 @@ input {
     padding: 5px;
 }
 
+.input-field {
+    padding: 3.5px 5px;
+    max-width: 200px;
+}
+
 button {
     border: 1.5px solid #efefef;
     border-radius: 5px;
     display: inline;
     padding: 5px 8px;
+}
+
+.current-location-button {
+    border: none;
 }
 
 .current-location-pin {
@@ -39,6 +48,10 @@ h1 {
     padding: 10px 0;
 }
 
+p {
+    margin-bottom: none;
+}
+
 img {
     width:150px;
     height: auto;
@@ -46,7 +59,7 @@ img {
 
 .weather-info-descr-today {
     font-size: 40px;
-    margin: 42px 0 10px;
+    margin: 50px 0 10px;
 }
 
 .weather-info-descr-today::first-letter {
@@ -77,7 +90,7 @@ a {
 }
 
 .weather-info-details {
-    font-size: 13.5px;
+    font-size: 15px;
 }
 
 .card-title {

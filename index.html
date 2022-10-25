@@ -18,7 +18,7 @@
         <div class="row header">
             <div class="col-4">
                 <form id="search-form" class="search-form">
-                        <button id="current-location-button"><i class="fa-solid fa-location-pin current-location-pin"></i></button>
+                        <button class="current-location-button" id="current-location-button"><i class="fa-solid fa-location-pin current-location-pin"></i></button>
                         <input class="input-field" id="search-field" type="text" placeholder="Type in your city" autocomplete="off" autofocus="on">
                         <input type="submit" class="search-button" id="search-button" value="Search"/>
                 </form>
@@ -26,8 +26,11 @@
                     <h1><span id="displayed-city"></span>, <span id="displayed-country"></span></h1>
                 </div>
                 <div class="location-info-details">
-                    <p id="current-date-weekday-time"></p>
-                    <p id="current-date"></p>
+                    <p class="current-date-weekday-time" id="current-date-weekday-time">
+                        Last updated at:
+                        <div id="current-weekday-time"></div>
+                    </p>
+                    <p class="current-date" id="current-date"></p>
                 </div>
             </div>
             <div class="col-4">
