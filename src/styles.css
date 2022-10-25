@@ -97,6 +97,10 @@ img {
     opacity: 0.5;
 }
 
+.weather-info-adj-future {
+    font-size: smaller;
+}
+
 small {
     font-size: 10px;
     margin-top: 5px;
