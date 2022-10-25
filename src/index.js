@@ -49,7 +49,6 @@ function formatForecastDate(timestamp) {
 }
 
 function showForecast(response) {
-  console.log(response.data.daily);
   let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
     let forecastHTML = `<div class="row">`;
@@ -118,6 +117,24 @@ function handleSubmit(event) {
 
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", handleSubmit);
+
+// Current Location Button
+
+function searchLocation(position) {
+  let apiKey = "ab34b6cfb76f0e4bt38a1d0d31751o81";
+  let unit = "imperial";
+  let apiEndpoint = "https://api.shecodes.io/weather/v1/current?";
+  let apiUrl = `${apiEndpoint}lon=${position.coords.longitude}&lat=${position.coords.latitude}&key=${apiKey}&units=${unit}`;
+  axios.get(apiUrl).then(showTemp);
+}
+
+function displayCurrentLocation(event) {
+  event.preventDefault();
+  navigator.geolocation.getCurrentPosition(searchLocation);
+}
+
+let currentLocationButton = document.querySelector("#current-location-button");
+currentLocationButton.addEventListener("click", displayCurrentLocation);
 
 
 // -----
