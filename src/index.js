@@ -59,15 +59,15 @@ function showForecast(response) {
           <div class="card">
             <div class="card-body">
               <h5 class="card-title forecast-weekday">${formatForecastWeekday(forecastDay.time)}</h5>
-              <h6 class="card-undertitle">${formatForecastDate(forecastDay.time)}</h6>
-              <div class="weather-info-icon-future">
-                <img class="forecast-icon" src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${forecastDay.condition.icon}.png" alt="">
+              <h6 class="card-undertitle forecast-date">${formatForecastDate(forecastDay.time)}</h6>
+              <div class="forecast-emoji">
+                <img class="forecast-emoji-img-element" src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${forecastDay.condition.icon}.png" alt="">
               </div> 
-              <div class="weather-info-temp-future">
+              <div class="forecast-temp">
                <span class="forecast-max-temp">${Math.round(forecastDay.temperature.maximum)}°</span> | <span class="forecast-min-temp">${Math.round(forecastDay.temperature.minimum)}°</span>
               </div>
               <p class="card-text">
-                <span class="weather-info-adj-future">${capitalizeFirstLetter(forecastDay.condition.description)}</span>
+                <span class="forecast-weather-description">${capitalizeFirstLetter(forecastDay.condition.description)}</span>
               </p>
             </div>
           </div>
@@ -82,17 +82,17 @@ function showForecast(response) {
 // Temperature
 
 function showTemp(response) {
-  document.querySelector("#temp-number-today").innerHTML = Math.round(response.data.temperature.current);
+  document.querySelector("#current-temp-number").innerHTML = Math.round(response.data.temperature.current);
   document.querySelector("#displayed-city").innerHTML = response.data.city;
   document.querySelector("#displayed-country").innerHTML = response.data.country;
-  document.querySelector("#weather-info-descr-today").innerHTML = response.data.condition.description;
+  document.querySelector("#current-weather-description").innerHTML = response.data.condition.description;
   document.querySelector("#feels-like-temp").innerHTML = `${Math.round(response.data.temperature.feels_like)} ℉`;
   document.querySelector("#humidity").innerHTML = response.data.temperature.humidity;
   document.querySelector("#wind").innerHTML = `${Math.round(response.data.wind.speed)} mph`;
   document.querySelector("#current-weekday-time").innerHTML = formatCurrentWeekdayTime(response.data.time * 1000);
   document.querySelector("#current-date").innerHTML = formatCurrentDate(response.data.time * 1000);
-  document.querySelector("#weather-info-emoji-today").setAttribute("src", `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`);
-  document.querySelector("#weather-info-emoji-today").setAttribute("alt", response.data.condition.description);
+  document.querySelector("#current-emoji-img-element").setAttribute("src", `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`);
+  document.querySelector("#current-emoji-img-element").setAttribute("alt", response.data.condition.description);
 }
 
 // Search Engine
@@ -111,7 +111,7 @@ function searchCity(city) {
 
 function handleSubmit(event) {
   event.preventDefault();
-  let cityInputElement = document.querySelector("#search-field");
+  let cityInputElement = document.querySelector("#city-input");
   searchCity(cityInputElement.value);
 }
 
@@ -120,7 +120,7 @@ searchForm.addEventListener("submit", handleSubmit);
 
 // Current Location Button
 
-function searchLocation(position) {
+function getCurrentLocation(position) {
   let apiKey = "ab34b6cfb76f0e4bt38a1d0d31751o81";
   let unit = "imperial";
   let apiEndpoint = "https://api.shecodes.io/weather/v1/current?";
@@ -128,13 +128,13 @@ function searchLocation(position) {
   axios.get(apiUrl).then(showTemp);
 }
 
-function displayCurrentLocation(event) {
+function handleClick(event) {
   event.preventDefault();
-  navigator.geolocation.getCurrentPosition(searchLocation);
+  navigator.geolocation.getCurrentPosition(getCurrentLocation);
 }
 
 let currentLocationButton = document.querySelector("#current-location-button");
-currentLocationButton.addEventListener("click", displayCurrentLocation);
+currentLocationButton.addEventListener("click", handleClick);
 
 
 // -----

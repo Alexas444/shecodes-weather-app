@@ -23,9 +23,9 @@ input {
     padding: 5px;
 }
 
-.input-field {
-    padding: 3.5px 5px;
+.city-input {
     max-width: 200px;
+    padding: 3.5px 5px;
 }
 
 button {
@@ -53,51 +53,50 @@ p {
 }
 
 img {
-    width:150px;
     height: auto;
+    width:150px;
 }
 
-.weather-info-emoji-today {
+.current-emoji-img-element {
     margin-top: 30px;
 }
 
-.weather-info-descr-today {
+.current-weather-description {
     font-size: 40px;
     margin: 50px 0 10px;
 }
 
-.weather-info-descr-today::first-letter {
+.current-weather-description::first-letter {
     text-transform: capitalize;
 }
 
-.weather-info-temp-today {
+.current-temp {
     font-size: 20px;
     font-weight: lighter;
     margin-bottom: 10px;
 }
-.temp-number-today{
+.current-temp-number{
     font-weight: 900;
 }
 
-.weather-info-details {
+.current-weather-details {
     font-size: 15px;
 }
 
-.card-title {
+.forecast-weekday {
     font-size: 1.2rem;
 }
 
-.forecast-icon {
-    color: #e7eaf6;
-    width: 70px;
+.forecast-emoji-img-element {
     height: auto;
+    width: 70px;
 }
 
 .forecast-min-temp {
     opacity: 0.5;
 }
 
-.weather-info-adj-future {
+.forecast-weather-description{
     font-size: smaller;
 }
 

@@ -17,38 +17,37 @@
     <div class="container">
         <div class="row header">
             <div class="col-4">
-                <form id="search-form" class="search-form">
+                <form class="search-form" id="search-form">
                         <button class="current-location-button" id="current-location-button"><i class="fa-solid fa-location-pin current-location-pin"></i></button>
-                        <input class="input-field" id="search-field" type="text" placeholder="Type in your city" autocomplete="off" autofocus="on">
+                        <input class="city-input" id="city-input" type="text" placeholder="Type in your city" autocomplete="off" autofocus="on">
                         <input type="submit" class="search-button" id="search-button" value="Search"/>
                 </form>
-                <div class="location-info-city">
+                <div class="current-location-info">
                     <h1><span id="displayed-city"></span>, <span id="displayed-country"></span></h1>
                 </div>
-                <div class="location-info-details">
-                    <p class="current-date-weekday-time" id="current-date-weekday-time">
+                <div class="current-location-date-time">
+                    <p>
                         Last updated at:
                         <div id="current-weekday-time"></div>
                     </p>
-                    <p class="current-date" id="current-date"></p>
+                    <p id="current-date"></p>
                 </div>
             </div>
             <div class="col-4">
-                <div class="weather-info-emoji-today">
-                    <img class="weather-info-emoji-today" id="weather-info-emoji-today" src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png" alt="Clear sky" />
+                <div class="current-emoji">
+                    <img class="current-emoji-img-element" id="current-emoji-img-element" src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png" alt="Clear sky" />
                 </div>
             </div>
             <div class="col-4">
-                <div id="weather-info-descr-today" class="weather-info-descr-today">
-                </div>
-                <div id="current-temp" class="weather-info-temp-today">
-                    <span id="temp-number-today" class="temp-number-today">26</span> ℉
-                </div>
-                <div class="weather-info-details">
-                    Feels like: <span id="feels-like-temp"></span><br>
-                    Humidity: <span id="humidity"></span>%<br>
-                    Wind: <span id="wind"></span>
-                </div>
+                <div class="current-weather-description" id="current-weather-description"></div>
+                    <div class="current-temp" id="current-temp">
+                        <span class="current-temp-number" id="current-temp-number">26</span> ℉
+                    </div>
+                    <div class="current-weather-details">
+                        Feels like: <span id="feels-like-temp"></span><br>
+                        Humidity: <span id="humidity"></span>%<br>
+                        Wind: <span id="wind"></span>
+                    </div>
             </div>
         </div>
         <div class="forecast" id="forecast">
