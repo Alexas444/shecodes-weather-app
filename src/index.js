@@ -26,6 +26,10 @@ function formatCurrentDate(timestamp) {
 
 //Forecast
 
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 function formatForecastWeekday(timestamp) {
   let date = new Date(timestamp * 1000);
   let weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -63,7 +67,7 @@ function showForecast(response) {
                <span class="forecast-max-temp">${Math.round(forecastDay.temperature.maximum)}°</span> | <span class="forecast-min-temp">${Math.round(forecastDay.temperature.minimum)}°</span>
               </div>
               <p class="card-text">
-                <span class="weather-info-adj-future">${forecastDay.condition.description}</span>
+                <span class="weather-info-adj-future">${capitalizeFirstLetter(forecastDay.condition.description)}</span>
               </p>
             </div>
           </div>

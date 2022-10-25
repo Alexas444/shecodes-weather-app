@@ -94,10 +94,6 @@ a {
     opacity: 0.5;
 }
 
-.weather-info-adj-future {
-    text-transform: capitalize;
-}
-
 small {
     font-size: 10px;
     margin-top: 5px;
