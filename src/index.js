@@ -139,4 +139,4 @@ currentLocationButton.addEventListener("click", handleClick);
 
 // -----
 
-searchCity("Toronto");
+searchCity("Alaska");
