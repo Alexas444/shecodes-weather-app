@@ -1,4 +1,2 @@
-Colorful background (video?)
 Id, class, function, variables name structure
-When typing new city while fahrenheit is active, it shows celsius but celsius link is active (as by default)
 Add current location feature

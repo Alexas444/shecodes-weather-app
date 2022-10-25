@@ -12,7 +12,8 @@ function formatCurrentWeekdayTime(timestamp) {
   }
   let weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   let weekday = weekdays[date.getDay()];
-  return `${weekday} ${hour}:${minute} (local time)`;
+  let ampmTime = date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+  return `${weekday} ${ampmTime} (local time)`;
 }
 
 function formatCurrentDate(timestamp) {
@@ -82,18 +83,13 @@ function showForecast(response) {
 // Temperature
 
 function showTemp(response) {
-  celsiusTemp = Math.round(response.data.temperature.current);
-  fahrenheitTemp = Math.round((celsiusTemp * 9/5) + 32);
-  feelsLikeTemp = Math.round(response.data.temperature.feels_like);
-  windSpeed = Math.round(response.data.wind.speed);
-
   document.querySelector("#temp-number-today").innerHTML = Math.round(response.data.temperature.current);
   document.querySelector("#displayed-city").innerHTML = response.data.city;
   document.querySelector("#displayed-country").innerHTML = response.data.country;
   document.querySelector("#weather-info-descr-today").innerHTML = response.data.condition.description;
-  document.querySelector("#feels-like-temp").innerHTML = `${Math.round(response.data.temperature.feels_like)} ℃`;
+  document.querySelector("#feels-like-temp").innerHTML = `${Math.round(response.data.temperature.feels_like)} ℉`;
   document.querySelector("#humidity").innerHTML = response.data.temperature.humidity;
-  document.querySelector("#wind").innerHTML = `${Math.round(response.data.wind.speed)} km/h`;
+  document.querySelector("#wind").innerHTML = `${Math.round(response.data.wind.speed)} mph`;
   document.querySelector("#current-weekday-time").innerHTML = formatCurrentWeekdayTime(response.data.time * 1000);
   document.querySelector("#current-date").innerHTML = formatCurrentDate(response.data.time * 1000);
   document.querySelector("#weather-info-emoji-today").setAttribute("src", `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`);
@@ -104,7 +100,7 @@ function showTemp(response) {
 
 function searchCity(city) {
   let apiKey = "ab34b6cfb76f0e4bt38a1d0d31751o81";
-  let unit = "metric";
+  let unit = "imperial";
   let apiEndpointCurrent = "https://api.shecodes.io/weather/v1/current?";
   let apiUrlCurrent = `${apiEndpointCurrent}query=${city}&key=${apiKey}&units=${unit}`;
   let apiEndpointForecast = "https://api.shecodes.io/weather/v1/forecast?";
@@ -123,42 +119,6 @@ function handleSubmit(event) {
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", handleSubmit);
 
-// Unit Conversion
-
-function showFahrenheitTemp(event) {
-  event.preventDefault();
-  celsiusLink.classList.remove("active");
-  fahrenheitLink.classList.add("active");
-  let tempTodayElement = document.querySelector("#temp-number-today");
-  tempTodayElement.innerHTML = fahrenheitTemp;
-  let feelsLikeTempElement = document.querySelector("#feels-like-temp");
-  feelsLikeTempElement.innerHTML = `${Math.round((feelsLikeTemp * 9/5) + 32)} ℉`;
-  let windSpeedElement = document.querySelector("#wind");
-  windSpeedElement.innerHTML = `${Math.round(windSpeed / 1.609)} mph`;
-}
-
-function showCelsiusTemp(event) {
-  event.preventDefault();
-  fahrenheitLink.classList.remove("active");
-  celsiusLink.classList.add("active");
-  let tempTodayElement = document.querySelector("#temp-number-today");
-  tempTodayElement.innerHTML = celsiusTemp;
-  let feelsLikeTempElement = document.querySelector("#feels-like-temp");
-  feelsLikeTempElement.innerHTML = `${feelsLikeTemp} ℃`;
-  let windSpeedElement = document.querySelector("#wind");
-  windSpeedElement.innerHTML = `${windSpeed} km/h`;
-}
-
-let fahrenheitLink = document.querySelector("#fahrenheit-link");
-fahrenheitLink.addEventListener("click", showFahrenheitTemp);
-
-let celsiusLink = document.querySelector("#celsius-link");
-celsiusLink.addEventListener("click", showCelsiusTemp);
-
-let celsiusTemp = null;
-let fahrenheitTemp = null;
-let feelsLikeTemp = null;
-let windSpeed = null;
 
 // -----
 

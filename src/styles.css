@@ -75,20 +75,6 @@ img {
     font-weight: 900;
 }
 
-a {
-    text-decoration: none;
-}
-
-.active {
-    color: black;
-}
-
-.active:hover {
-    text-decoration: none;
-    color: black;
-    cursor: default;
-}
-
 .weather-info-details {
     font-size: 15px;
 }
