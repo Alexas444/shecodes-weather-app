@@ -1,6 +1,6 @@
 //Date
 
-function formatWeekdayTime(timestamp) {
+function formatCurrentWeekdayTime(timestamp) {
   let date = new Date(timestamp);
   let hour = date.getHours();
   if (hour < 10) {
@@ -15,7 +15,7 @@ function formatWeekdayTime(timestamp) {
   return `Last updated at: ${weekday} ${hour}:${minute} (local time)`;
 }
 
-function formatDate(timestamp) {
+function formatCurrentDate(timestamp) {
   let date = new Date(timestamp);
   let day = date.getDate();
   let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -26,33 +26,60 @@ function formatDate(timestamp) {
 
 //Forecast
 
+function formatForecastWeekday(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  let weekday = weekdays[date.getDay()];
+
+  return weekday;
+}
+
+function formatForecastDate(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDate();
+  let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  let month = months[date.getMonth()];
+  let year = date.getFullYear();
+  return `${month} ${day}, ${year}`
+}
+
 function showForecast(response) {
-let forecastElement = document.querySelector("#forecast");
-  let days = ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"];
-  let forecastHTML = `<div class="row">`;
-  days.forEach(function(day) {
-    forecastHTML = forecastHTML +
-      `<div class="col-2">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">${day}</h5>
-            <h6 class="card-undertitle">25 July 2022</h6>
-            <span class="weather-info-temp-future"><img class="forecast-icon" src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/scattered-clouds-day.png" alt=""> <br> 24℃ | 76℉</span>
-            <p class="card-text">
-              <span class="weather-info-adj-future">Mostly sunny</span>
+  console.log(response.data.daily);
+  let forecast = response.data.daily;
+  let forecastElement = document.querySelector("#forecast");
+    let forecastHTML = `<div class="row">`;
+    forecast.forEach(function(forecastDay, index) {
+      if (index < 6) {
+      forecastHTML = forecastHTML +
+        `<div class="col-2">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title forecast-weekday">${formatForecastWeekday(forecastDay.time)}</h5>
+              <h6 class="card-undertitle">${formatForecastDate(forecastDay.time)}</h6>
+              <div class="weather-info-icon-future">
+                <img class="forecast-icon" src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${forecastDay.condition.icon}.png" alt="">
+              </div> 
+              <div class="weather-info-temp-future">
+               <span class="forecast-max-temp">${Math.round(forecastDay.temperature.maximum)}°</span> | <span class="forecast-min-temp">${Math.round(forecastDay.temperature.minimum)}°</span>
+              </div>
+              <p class="card-text">
+                <span class="weather-info-adj-future">${forecastDay.condition.description}</span>
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-      `
-  });
-  forecastHTML = forecastHTML + `</div>`
-  forecastElement.innerHTML = forecastHTML;
+       `;
+      }
+    });
+    forecastHTML = forecastHTML + `</div>`
+    forecastElement.innerHTML = forecastHTML;
 }
 
 // Temperature
 
 function showTemp(response) {
   celsiusTemp = Math.round(response.data.temperature.current);
+  fahrenheitTemp = Math.round((celsiusTemp * 9/5) + 32);
   feelsLikeTemp = Math.round(response.data.temperature.feels_like);
   windSpeed = Math.round(response.data.wind.speed);
 
@@ -63,8 +90,8 @@ function showTemp(response) {
   document.querySelector("#feels-like-temp").innerHTML = `${Math.round(response.data.temperature.feels_like)} ℃`;
   document.querySelector("#humidity").innerHTML = response.data.temperature.humidity;
   document.querySelector("#wind").innerHTML = `${Math.round(response.data.wind.speed)} km/h`;
-  document.querySelector("#current-date-weekday-time").innerHTML = formatWeekdayTime(response.data.time * 1000);
-  document.querySelector("#current-date").innerHTML = formatDate(response.data.time * 1000);
+  document.querySelector("#current-date-weekday-time").innerHTML = formatCurrentWeekdayTime(response.data.time * 1000);
+  document.querySelector("#current-date").innerHTML = formatCurrentDate(response.data.time * 1000);
   document.querySelector("#weather-info-emoji-today").setAttribute("src", `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`);
   document.querySelector("#weather-info-emoji-today").setAttribute("alt", response.data.condition.description);
 }
@@ -99,7 +126,7 @@ function showFahrenheitTemp(event) {
   celsiusLink.classList.remove("active");
   fahrenheitLink.classList.add("active");
   let tempTodayElement = document.querySelector("#temp-number-today");
-  tempTodayElement.innerHTML = Math.round((celsiusTemp * 9/5) + 32);
+  tempTodayElement.innerHTML = fahrenheitTemp;
   let feelsLikeTempElement = document.querySelector("#feels-like-temp");
   feelsLikeTempElement.innerHTML = `${Math.round((feelsLikeTemp * 9/5) + 32)} ℉`;
   let windSpeedElement = document.querySelector("#wind");
@@ -125,6 +152,7 @@ let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", showCelsiusTemp);
 
 let celsiusTemp = null;
+let fahrenheitTemp = null;
 let feelsLikeTemp = null;
 let windSpeed = null;
 
